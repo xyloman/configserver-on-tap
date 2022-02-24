@@ -1,0 +1,21 @@
+apiVersion: carto.run/v1alpha1
+kind: Workload
+metadata:
+  name: configserver
+  labels:
+    apps.tanzu.vmware.com/workload-type: web
+    app.kubernetes.io/part-of: configserver
+    # set this if needing configserver to only be resolvable on cluster
+    # networking.knative.dev/visibility: cluster-local
+  annotations:
+    autoscaling.knative.dev/minScale: "0"
+spec:
+  source:
+    git:
+      url: https://github.com/xyloman/configserver-on-tap.git
+      ref:
+        branch: main
+  build:
+    env:
+    - name: BP_JVM_VERSION
+      value: "17.*"

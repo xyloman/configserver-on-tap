@@ -1,3 +1,5 @@
+config/service-with-secrets.yml
+
 HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar

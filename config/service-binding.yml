@@ -1,0 +1,36 @@
+apiVersion: servicebinding.io/v1alpha3
+kind: ServiceBinding
+metadata:
+  name: configserver-git-auth
+
+spec:
+  workload:
+    apiVersion: apps/v1
+    kind: Deployment
+    selector:
+      matchLabels:
+        carto.run/workload-name: configserver
+
+  service:
+    apiVersion: v1
+    kind: Secret
+    name: configserver-git-auth
+
+--- 
+apiVersion: servicebinding.io/v1alpha3
+kind: ServiceBinding
+metadata:
+  name: configserver-encrypt-key
+
+spec:
+  workload:
+    apiVersion: apps/v1
+    kind: Deployment
+    selector:
+      matchLabels:
+        carto.run/workload-name: configserver
+
+  service:
+    apiVersion: v1
+    kind: Secret
+    name: configserver-encrypt-key

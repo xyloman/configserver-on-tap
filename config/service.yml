@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: configserver-git-auth
+stringData:
+  type: configserver-git-auth
+  uri: https://github.com/spring-cloud-samples/config-repo.git
+  # username: <optional username associated with personal access token>
+  # password: <optional personal access token https://github.com/settings/tokens>
+  # skipSslValidation: false
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: configserver-encrypt-key
+stringData:
+  type: configserver-encrypt-key
+  key: |- 
+    -----BEGIN PRIVATE KEY-----
+    MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDuw5SY8zb0lOO0
+    3Ky3pHfHGUMQDQv/KDDpdG2wWz+gcrp21ewI0ZNEYJpc/hrzdkx2EP9+EI/0DrlT
+    ...
+    r9vod9KGSTpV0Z/VHkpaB0gpcCVXKhKa5fm8LH146zELAElMzzaIYB5uCzAPVvu5
+    Ylr/anVxGDHmBNLxtO6MlZ5F
+    -----END PRIVATE KEY-----
