@@ -1,18 +1,18 @@
 # Example Spring Cloud Config Server on Tanzu Application Platform
 
-The purpose of this repository is demonstrate how to configure a simple Spring Cloud Config Server to run on Tanzu Application Platform and use Service Bindings to consume secrets used by: 
+The purpose of this repository is to demonstrate how to configure a simple Spring Cloud Config Server to run on Tanzu Application Platform and use Service Bindings to consume secrets used by: 
 
 - [Git Backend Http Basic Authentication](https://cloud.spring.io/spring-cloud-config/reference/html/#_git_backend)
 - [Configure Symmetric Key used for Encryption](https://cloud.spring.io/spring-cloud-config/reference/html/#_key_management)
 
 ## Configure the Secrets in Kubernetes
 
-Kubernetes already provides a means to securely store seed [secrets](https://kubernetes.io/docs/concepts/configuration/secret/) such as git authentication ane symmetric keys.
+Kubernetes already provides a means to securely store seed [secrets](https://kubernetes.io/docs/concepts/configuration/secret/) such as git authentication and symmetric keys.
 
 
 ### configserver-git-auth secret
 
-Create a Kubernetes secret for `configserver-git-auth`.  This secrets `stringData` will be shapped based upon the [servicebinding/spec](https://github.com/servicebinding/spec/tree/12a9f2e376c50f051cc9aa913443bdecb0a24a01#well-known-secret-entries).  The only required field for our binding is the `type` field which must be equal to `configserver-git-auth`.  This will be used by the `GitAuthBindingsPropertiesProcessor` to detect that these properties are bound to the application.
+Create a Kubernetes secret for `configserver-git-auth`.  This secret's `stringData` will be shapped based upon the [servicebinding/spec](https://github.com/servicebinding/spec/tree/12a9f2e376c50f051cc9aa913443bdecb0a24a01#well-known-secret-entries).  The only required field for our binding is the `type` field which must be equal to `configserver-git-auth`.  This will be used by the `GitAuthBindingsPropertiesProcessor` to detect that these properties are bound to the application.
 
 ```yaml
 apiVersion: v1
@@ -185,7 +185,7 @@ The `EncryptKeyBindingsPropertiesProcessor` implementation is responsible for pr
 
 ### GitAuthBindingsPropertiesProcessor
 
-The `GitAuthBindingsPropertiesProcessor` implementation is responsible for processing secrets with a `type` key equal to `configserver-git-auth`.  It will map the keys in our Secret to well know Spring Cloud Config Server properties.
+The `GitAuthBindingsPropertiesProcessor` implementation is responsible for processing secrets with a `type` key equal to `configserver-git-auth`.  It will map the keys in our Secret to well known Spring Cloud Config Server properties.
 
 ### META-INF/spring.factories
 
@@ -244,4 +244,4 @@ The approach of using `BindingPropertiesProcessor` is a Developer Experience imp
 
 ## Setting up TAP Locally
 
-This documentation was assembly by using my guide [Tanzu Application Platform Local Setup](https://github.com/xyloman/tanzu-application-platform-local-setup) in order to setup TAP Locally.
+This documentation was assembled by using my guide [Tanzu Application Platform Local Setup](https://github.com/xyloman/tanzu-application-platform-local-setup) in order to setup TAP Locally.
